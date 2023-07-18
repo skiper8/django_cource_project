@@ -14,6 +14,7 @@ from django.views.generic import UpdateView, CreateView, TemplateView
 from django.conf import settings
 
 from users.forms import UserRegisterForm, UserProfileForm, UserForgotPasswordForm, UserSetNewPasswordForm
+from users.services.services import auth_send_mail
 
 
 class UserRegisterView(CreateView):
@@ -36,14 +37,7 @@ class UserRegisterView(CreateView):
         activation_url = reverse_lazy(
             'users:confirm_email', kwargs={'token': user.token}
         )
-
-        send_mail(
-            subject='Подтверждение почты',
-            message=f'Для подтверждения регистрации перейдите по ссылке: http://127.0.0.1:8000{activation_url}',
-            from_email=settings.EMAIL_HOST_USER,
-            recipient_list=[user.email],
-            fail_silently=False
-        )
+        auth_send_mail(user.email, activation_url)
         user.save()
         return redirect('users:email_confirmation_sent')
 

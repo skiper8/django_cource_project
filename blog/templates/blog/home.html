@@ -1,0 +1,31 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+<div class="container marketing">
+    <table border="1">
+        <caption>Данные по рассылке</caption>
+        <tr>
+            <th>количество рассылок</th>
+            <th>количество активных рассылок</th>
+            <th>количество уникальных клиентов для рассылок</th>
+        </tr>
+        <tr>
+            <td>34,5</td>
+            <td>3,5</td>
+            <td>36</td>
+            <td>23</td>
+        </tr>
+    </table>
+    {% for object in blog_list %}
+    <div class="row">
+        <div class="col-lg-4">
+            <img class="rounded-circle"
+                 src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
+                 alt="Generic placeholder image" width="150" height="150">
+            <h2>{{ object.title }}</h2>
+            <p>{{ object.slug }}.</p>
+            <p><a class="btn btn-secondary" href="{% url 'blog:blog_detail' object.slug %}" role="button">View details &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

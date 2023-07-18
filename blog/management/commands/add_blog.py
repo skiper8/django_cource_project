@@ -1,6 +1,6 @@
 from django.core.management import BaseCommand
 
-from catalog.models import Blog
+from blog.models import Blog
 
 
 class Command(BaseCommand):
