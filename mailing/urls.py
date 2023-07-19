@@ -1,15 +1,19 @@
 from django.urls import path
-
 from mailing.apps import MailingConfig
-from mailing.views import MailingListView, MailingDetailView, MailingDeleteView, MailingUpdateView, \
-    MailingCreateView
+from mailing.views import *
 
 app_name = MailingConfig.name
 
 urlpatterns = [
-    path('mailing/', MailingListView.as_view(), name='mailings_list'),
-    path('mailing/<int:pk>/', MailingDetailView.as_view(), name='mailing_detail'),
+    path('mailing/', MailingListView.as_view(), name='mailing_list'),
+    path('mailing/create/', MailingCreateView.as_view(), name='mailing_create'),
+    path('mailing/update/<int:pk>/', MailingUpdateView.as_view(), name='mailing_update'),
     path('mailing/delete/<int:pk>/', MailingDeleteView.as_view(), name='mailing_delete'),
-    path('mailing/edit/<int:pk>/', MailingUpdateView.as_view(), name='mailing_update'),
-    path('mailing/create/', MailingCreateView.as_view(), name='mailing_form'),
+    path('toggle/<int:pk>/', toggle_status, name='toggle_status'),
+    path('clients/', ClientListView.as_view(), name='client_list'),
+    path('clients/detail/<int:pk>/', ClientDetailView.as_view(), name='client_detail'),
+    path('clients/create/', ClientCreateView.as_view(), name='client_create'),
+    path('clients/update/<int:pk>/', ClientUpdateView.as_view(), name='client_update'),
+    path('clients/delete/<int:pk>/', ClientDeleteView.as_view(), name='client_delete'),
+    path('mailing_log/', MailingLogListView.as_view(), name='mailing_log_list'),
 ]

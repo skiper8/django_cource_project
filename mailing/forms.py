@@ -1,8 +1,10 @@
 from django import forms
-from mailing.models import Mailing
+
+from mailing.models import Client, Mailing
 
 
-class MixinStyle:
+class FormStyleMixin:
+    """Класс-миксин для стилизации форм"""
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -11,7 +13,17 @@ class MixinStyle:
             field.widget.attrs['class'] = 'form-control'
 
 
-class MailingForms(MixinStyle, forms.ModelForm):
+class ClientForm(FormStyleMixin, forms.ModelForm):
+    """Форма для создания и редактирования поста"""
+
+    class Meta:
+        model = Client
+        exclude = ('is_active', 'user')
+
+
+class MailingForm(FormStyleMixin, forms.ModelForm):
+    """Форма для создания и редактирования рассылки"""
+
     class Meta:
         model = Mailing
-        fields = '__all__'
+        exclude = ('is_active', 'user', 'status', 'is_published')
