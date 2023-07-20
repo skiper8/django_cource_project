@@ -49,6 +49,7 @@ class BlogDeleteView(LoginRequiredMixin, DeleteView):
     model = Blog
     success_url = reverse_lazy('mailing:blog_list')
 
+
 class ContactView(TemplateView):
     """Представление страницы контактов сервиса"""
     model = Contacts

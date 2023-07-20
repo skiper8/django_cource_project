@@ -1,4 +1,6 @@
 from django import forms
+from django.conf import settings
+
 from blog.models import Blog
 
 
@@ -18,22 +20,18 @@ class BlogForms(MixinStyle, forms.ModelForm):
 
     def clean_product_name(self):
         cleaned_name = self.cleaned_data['product_name']
-        forbidden_words = ["казино", "криптовалюта", "крипта", "биржа", "дешево", "бесплатно", "обман", "полиция",
-                           "радар"]
-        for word in forbidden_words:
+        for word in settings.FORBIDDEN_WORDS:
             if word in cleaned_name:
-                raise forms.ValidationError(f'Запрещено истольвозвать слово {word}.')
+                raise forms.ValidationError(f'Запрещено использовать слово {word}.')
             if word.title() in cleaned_name:
-                raise forms.ValidationError(f'Запрещено истольвозвать слово {word}.')
+                raise forms.ValidationError(f'Запрещено использовать слово {word}.')
         return cleaned_name
 
     def clean_product_text(self):
         cleaned_text = self.cleaned_data['product_text']
-        forbidden_words = ["казино", "криптовалюта", "крипта", "биржа", "дешево", "бесплатно", "обман", "полиция",
-                           "радар"]
-        for word in forbidden_words:
+        for word in settings.FORBIDDEN_WORDS:
             if word.title() in cleaned_text:
-                raise forms.ValidationError(f'Запрещено истольвозвать слово {word}.')
+                raise forms.ValidationError(f'Запрещено использовать слово {word}.')
             if word in cleaned_text:
-                raise forms.ValidationError(f'Запрещено истольвозвать слово {word}.')
+                raise forms.ValidationError(f'Запрещено использовать слово {word}.')
         return cleaned_text

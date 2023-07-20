@@ -3,14 +3,13 @@ from random import sample
 from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy, reverse
+from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView, TemplateView
 
 from blog.models import Blog
 from mailing.forms import ClientForm, MailingForm
 from mailing.models import *
 from mailing.services.services import MessageService, delete_task, send_mailing, get_count_mailing, get_active_mailing, \
     get_unique_clients
-
-from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView, TemplateView
 
 
 class HomeView(TemplateView):
@@ -49,7 +48,7 @@ class MailingListView(LoginRequiredMixin, ListView):
 
 
 class MailingCreateView(LoginRequiredMixin, CreateView):
-    """Представление для создание рассылки"""
+    """Представление для создани рассылки"""
     model = Mailing
     form_class = MailingForm
     success_url = reverse_lazy('mailing:mailing_list')

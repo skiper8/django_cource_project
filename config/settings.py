@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
 from pathlib import Path
+
 from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -86,6 +87,8 @@ DATABASES = {
         'NAME': os.getenv('NAME_DB'),
         'USER': os.getenv('USER_DB'),
         'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': os.getenv('DB_HOST', '127.0.0.1'),
+        'PORT': os.getenv('DB_PORT', '5432')
     }
 }
 
@@ -144,7 +147,6 @@ EMAIL_PORT = 465
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 EMAIL_USE_SSL = True
-# qskpeutfwkfmxisg
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 AUTH_USER_MODEL = 'users.User'
@@ -172,3 +174,14 @@ if CACHE_ENABLED:
             "TIMEOUT": 300
         }
     }
+
+SUPERUSER_EMAIL = os.getenv('SUPERUSER_EMAIL', 'admin@yandex.ru')
+SUPERUSER_PASSWORD = os.getenv('SUPERUSER_PASSWORD', '456852')
+
+FORBIDDEN_WORDS: tuple[str, ...] = (
+    "казино", "криптовалюта",
+    "крипта", "биржа",
+    "дешево", "бесплатно",
+    "обман", "полиция",
+    "радар"
+)
