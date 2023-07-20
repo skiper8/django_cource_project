@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
 from pathlib import Path
+
 from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -173,3 +174,6 @@ if CACHE_ENABLED:
             "TIMEOUT": 300
         }
     }
+
+SUPERUSER_EMAIL = os.getenv('SUPERUSER_EMAIL', 'admin@yandex.ru')
+SUPERUSER_PASSWORD = os.getenv('SUPERUSER_PASSWORD', '456852')

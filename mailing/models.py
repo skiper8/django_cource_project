@@ -60,7 +60,7 @@ class Mailing(models.Model):
     create_date = models.DateField(auto_now_add=True, verbose_name='Дата создания')
     frequency = models.CharField(max_length=100, choices=FREQUENCY, verbose_name='Периодичность')
     status = models.CharField(max_length=100, choices=STATUS, verbose_name='Статус')
-    client = models.ManyToManyField(Client, verbose_name='Клиент', **NULLABLE)
+    client = models.ManyToManyField(Client, verbose_name='Клиент', blank=True)
     message = models.ForeignKey(Message, on_delete=models.SET_NULL, verbose_name='Сообщение', **NULLABLE)
     finish_date = models.DateField(verbose_name='Дата завершения рассылки', default='2024-01-01')
     finish_time = models.TimeField(verbose_name='Время завершения рассылки', default='00:00')
