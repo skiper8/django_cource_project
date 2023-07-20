@@ -1,4 +1,4 @@
-{% extends 'blog/base.html' %}
+{% extends 'mailing/base.html' %}
 
 {% block content %}
 {% for mailing in mailing_list %}
@@ -40,6 +40,6 @@
 <div class="container">
     <a href="{% url 'mailing:mailing_create' %}" class="btn btn-secondary my-3"
        style="background: darkgreen">Создать</a>
-    {% endif %}
+{% endif %}
 </div>
 {% endblock %}

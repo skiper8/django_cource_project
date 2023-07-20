@@ -9,8 +9,8 @@ class Command(BaseCommand):
         Blog.objects.all().delete()
 
         blog_list = [
-            {'title': 'Компьютер и что он скрывает внутри', 'text': 'ататтататата', 'is_active': True},
-            {'title': 'Робототехника дома', 'text': 'ататтататата', 'is_active': True},
+            {'title': 'Компьютер и что он скрывает внутри', 'text': 'ататтататата', 'is_active': True, 'slug': '1vevfvs'},
+            {'title': 'Робототехника дома', 'text': 'ататтататата', 'is_active': True, 'slug': 'vwemvomr3'},
         ]
 
         blog_objects = []
