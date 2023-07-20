@@ -177,3 +177,11 @@ if CACHE_ENABLED:
 
 SUPERUSER_EMAIL = os.getenv('SUPERUSER_EMAIL', 'admin@yandex.ru')
 SUPERUSER_PASSWORD = os.getenv('SUPERUSER_PASSWORD', '456852')
+
+FORBIDDEN_WORDS: tuple[str, ...] = (
+    "казино", "криптовалюта",
+    "крипта", "биржа",
+    "дешево", "бесплатно",
+    "обман", "полиция",
+    "радар"
+)
